@@ -1,0 +1,8 @@
+services:
+  4biz-notify-api:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "1618:3002"
+    env_file:
+      - .env
