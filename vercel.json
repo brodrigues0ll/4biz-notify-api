@@ -9,7 +9,13 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/index.js"
+      "dest": "index.js"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/auto-sync",
+      "schedule": "* * * * *"
     }
   ]
 }

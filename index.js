@@ -11,8 +11,12 @@ import syncRoutes from "./routes/sync.js";
 import credentialsRoutes from "./routes/credentials.js";
 import autoSyncRoutes from "./routes/autoSync.js";
 import pushRoutes from "./routes/push.js";
+import cronRoutes from "./routes/cron.js";
 
 const app = express();
+
+// Necessário para ler o IP real atrás de proxies (Vercel, Nginx, etc.)
+app.set("trust proxy", 1);
 
 // Segurança: headers HTTP
 app.use(helmet());
@@ -68,6 +72,7 @@ app.use("/api/sync", syncRoutes);
 app.use("/api/fourbiz-credentials", credentialsRoutes);
 app.use("/api/auto-sync-config", autoSyncRoutes);
 app.use("/api", pushRoutes);
+app.use("/api/cron", cronRoutes);
 
 app.get("/api/health", (_, res) =>
   res.json({ status: "ok", ts: new Date().toISOString() })
